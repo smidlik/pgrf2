@@ -1,5 +1,8 @@
 package model;
 
+import Raster.ImgBuffer;
+import Raster.ZBuffer;
+
 public class Visibility {
 
     private ImgBuffer imgBuffer;

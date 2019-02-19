@@ -1,4 +1,4 @@
-package model;
+package Raster;
 
 import java.awt.image.BufferedImage;
 

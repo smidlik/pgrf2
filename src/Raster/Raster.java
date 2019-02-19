@@ -1,4 +1,4 @@
-package model;
+package Raster;
 
 import transforms.Point2D;
 
