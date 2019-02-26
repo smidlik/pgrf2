@@ -1,8 +1,11 @@
 package Raster;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImgBuffer implements Raster<Integer>{
+
+
 
     private BufferedImage img;
 
@@ -10,6 +13,16 @@ public class ImgBuffer implements Raster<Integer>{
     img = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
     }
 
+    public BufferedImage getImg() {
+        return img;
+    }
+
+    public void clear(int color){
+        Graphics gr = img.getGraphics();
+        gr.setColor(new Color(color));
+        gr.fillRect(0,0,img.getWidth(),img.getHeight());
+
+    }
 
     @Override
     public void set(int x, int y, Integer value) {
@@ -19,6 +32,7 @@ public class ImgBuffer implements Raster<Integer>{
     @Override
     public Integer get(int x, int y) {
         return img.getRGB(x,y);
+
     }
 
     @Override

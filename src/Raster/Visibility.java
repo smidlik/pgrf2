@@ -1,10 +1,11 @@
-package model;
+package Raster;
 
 import Raster.ImgBuffer;
 import Raster.ZBuffer;
 import transforms.Col;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Visibility {
 
@@ -31,9 +32,14 @@ public class Visibility {
     public void init(int color){
         for (int i = 0; i < imgBuffer.getHeight(); i++) {
             for (int j = 0; j < imgBuffer.getHeight(); j++) {
-                imgBuffer.set(i,j,color);
+                //imgBuffer.set(i,j,color);
+                zBuffer.set(j,i,1f); //místo 1f je správně: new Float(1)
             }
         }
-        zBuffer=new ZBuffer<Float>(height,widht);
+        imgBuffer.clear(color);
+    }
+
+    public BufferedImage getBufferedImage() {
+        return imgBuffer.getImg();
     }
 }
