@@ -2,10 +2,12 @@ package ui;
 
 import Model.Solid;
 import Raster.ImgBuffer;
+import Raster.Visibility;
 import Raster.ZBuffer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -13,36 +15,37 @@ import java.util.TimerTask;
 
 public class MainFrame extends JFrame {
 
-    static int FPS = 1000 / 30;
-    private Canvas canvas;
+    private static int width = 800;
+    private static int height = 600;
+    private static int FPS = 1000 / 30;
+    private JPanel panel;
+    private Visibility visibility;
+    private BufferedImage img;
 
-    private List<Solid> solids;
 
 
     public MainFrame() {
 
-        solids = new ArrayList<>();
-
-
-
-
+        visibility = new Visibility(width,height);
+        img = visibility.getBufferedImage();
+        //TODO:
 
         init();
     }
 
     private void init() {
         setTitle("PGRF2");
-        setSize(800, 600);
+        setSize(width, height);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         initUI();
     }
 
     private void initUI() {
-        canvas = new Canvas();
-        add(canvas);
+        panel = new JPanel();
+        add(panel);
         java.util.Timer timer = new Timer();
-        System.out.println(canvas.getWidth());
+        System.out.println(panel.getWidth());
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -53,7 +56,12 @@ public class MainFrame extends JFrame {
 
     private void draw(){
 
-        canvas.paint();
+        img.getGraphics().fillRect(0,0,img.getWidth(),img.getHeight());
+
+        panel.getGraphics().drawImage(img,0,0,img.getWidth(),img.getHeight(),null);
+
+        panel.paintComponents(getGraphics());
+
 
 
     }
