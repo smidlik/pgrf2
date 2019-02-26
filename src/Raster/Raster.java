@@ -1,6 +1,4 @@
-package Raster;
-
-import transforms.Point2D;
+package raster;
 
 public interface Raster<T>{
 
