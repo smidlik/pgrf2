@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import transforms.Point3D;
 import util.Vectorizable;
@@ -16,5 +16,9 @@ public class Vertex implements Vectorizable<Vertex> {
     @Override
     public Vertex add(Vertex a) {
         return null;
+    }
+
+    public Vertex dehomog(){
+        return this.mul(1/getPosition().getW());
     }
 }

@@ -1,6 +1,4 @@
-package Model;
-
-import transforms.Point3D;
+package model;
 
 import java.util.List;
 

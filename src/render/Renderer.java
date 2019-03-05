@@ -1,13 +1,10 @@
 package render;
 
-import Model.Part;
-import Model.Solid;
-import Model.Vertex;
+import model.Part;
+import model.Solid;
+import model.Vertex;
 import transforms.Mat4;
 import util.Lerp;
-import util.Vectorizable;
-
-import java.util.Vector;
 
 public class Renderer {
 
@@ -81,7 +78,7 @@ public class Renderer {
             Vertex ab = lerp.lerp(b,a,t1); //Výpočet interpolace
             Vertex ac = lerp.lerp(c,a,t1);
 
-            rt.rasterize(a,ab,ac);
+            //rt.rasterize(a,ab,ac);
 
             //...
             /**

@@ -1,6 +1,10 @@
 package ui;
 
+import model.Vertex;
 import raster.Visibility;
+import render.Shader;
+import render.Triangle;
+import transforms.Col;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,23 +27,32 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         visibility = new Visibility(width, height);
         img = visibility.getBufferedImage();
+        setTitle("PGRF2");
+        setSize(width, height);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         init();
     }
 
     private void init() {
-        setTitle("PGRF2");
-        setSize(800, 600);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        Shader shader = new Shader() {
+            @Override
+            public Col shade(Vertex v) {
+                return new Col(0xFFFFFF);
+            }
+        };
+
+        Visibility visibility = new Visibility(width,height);
+        Triangle rTriangle = new Triangle(visibility);
+
         initUI();
     }
 
     private void initUI() {
         panel = new JPanel();
-
         add(panel);
+        panel.setBackground(Color.yellow);
 
-        img.setRGB(100,100,Color.RED.getRGB());
 
         java.util.Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -51,8 +64,7 @@ public class MainFrame extends JFrame {
     }
 
     private void draw() {
-        panel.paintComponents(img.getGraphics());
-        panel.getGraphics().drawImage(img, 0,0,img.getWidth(), img.getHeight(), null);
-        img.getGraphics().fillRect(0,0,img.getWidth(),img.getHeight());
+
+
     }
 }
