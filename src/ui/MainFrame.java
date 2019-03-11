@@ -8,6 +8,8 @@ import transforms.Col;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,12 +51,8 @@ public class MainFrame extends JFrame {
     }
 
     private void initUI() {
-        panel = new JPanel();
-        add(panel);
-        panel.setBackground(Color.yellow);
-
-
-        java.util.Timer timer = new Timer();
+        add(new DrawPane());
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -64,7 +62,17 @@ public class MainFrame extends JFrame {
     }
 
     private void draw() {
+        repaint();
+    }
 
+    public class DrawPane extends JPanel {
+
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.drawImage(img,0,0,img.getWidth(),img.getHeight(),null);
+            g2d.dispose();
+        }
 
     }
 }
