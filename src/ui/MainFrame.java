@@ -19,9 +19,7 @@ public class MainFrame extends JFrame {
     private static final int width = 800;
     private static final int height = 600;
     static final int FPS = 1000 / 30;
-    private JPanel panel;
 
-    private Canvas canvas;
     private Visibility visibility;
     private BufferedImage img;
 
@@ -37,12 +35,7 @@ public class MainFrame extends JFrame {
     }
 
     private void init() {
-        Shader shader = new Shader() {
-            @Override
-            public Col shade(Vertex v) {
-                return new Col(0xFFFFFF);
-            }
-        };
+        Shader shader = v -> new Col();
 
         Visibility visibility = new Visibility(width,height);
         Triangle rTriangle = new Triangle(visibility);

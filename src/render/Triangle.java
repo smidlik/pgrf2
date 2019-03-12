@@ -31,17 +31,21 @@ public class Triangle {
         //viewPort TRANSFORMATION
         Point2D pA = transformViewport(a);
         Point2D pB = transformViewport(b);
+        Point2D pC = transformViewport(c);
         //další
 
         for (int y = (int) Math.max(pA.getY(), 0); y < pB.getY(); y++) {
             double s1 = (y - pA.getY()) / (pB.getY() - pA.getY());
+            double s2 = 0;
             double x1 = 0;
-            double s2, x2, z1, z2;
-            /*for (int x = Math.max((int) x1, 0); x < x2; x++) {
-                double t = 0;
-                double z = 0;
+            double x2 = 0;
+            double z1 = 0;
+            double z2 = 0;
+            for (int x = Math.max((int) x1, 0); x < x2; x++) {
+                float t = 0;
+                float z = 0;
                 vis.put(x, y, z, shader.apply(new Vertex()));
-            }*/
+            }
         }
     }
 

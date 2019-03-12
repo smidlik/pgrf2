@@ -77,8 +77,11 @@ public class Renderer {
             double t1 = -b.getPosition().getZ()/(a.getPosition().getZ()-b.getPosition().getZ());
             Vertex ab = lerp.lerp(b,a,t1); //Výpočet interpolace
             Vertex ac = lerp.lerp(c,a,t1);
+            Vertex bc = lerp.lerp(c,b,t1);
 
-            //rt.rasterize(a,ab,ac);
+            triangle.rasterize(a,ab,ac);
+            triangle.rasterize(a,b,ac);
+            triangle.rasterize(bc,b,ac);
 
             //...
             /**
