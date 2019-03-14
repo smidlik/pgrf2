@@ -3,15 +3,15 @@ package render;
 import model.Vertex;
 import raster.Visibility;
 import transforms.Col;
-import transforms.Mat4;
 import transforms.Point2D;
-import transforms.Vec3D;
+import util.Lerp;
 
 import java.util.function.Function;
 
 
 public class Triangle {
 
+    Lerp<Vertex> lerp = new Lerp<>();
     Function<Vertex, Col> shader = (vertex -> new Col(0xFFFFFF));
     Visibility vis;
 
@@ -37,6 +37,8 @@ public class Triangle {
         for (int y = (int) Math.max(pA.getY(), 0); y < pB.getY(); y++) {
             double s1 = (y - pA.getY()) / (pB.getY() - pA.getY());
             double s2 = 0;
+            Vertex ab = lerp.lerp(a,b,s1);
+            Vertex ac = lerp.lerp(a,c,s2);
             double x1 = 0;
             double x2 = 0;
             double z1 = 0;
@@ -44,6 +46,10 @@ public class Triangle {
             for (int x = Math.max((int) x1, 0); x < x2; x++) {
                 float t = 0;
                 float z = 0;
+
+                Vertex abc = lerp.lerp(ab,ac,t);
+
+                // Vykreslení bodu + shader, případně barva ....
                 vis.put(x, y, z, shader.apply(new Vertex()));
             }
         }

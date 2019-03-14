@@ -35,10 +35,11 @@ public class MainFrame extends JFrame {
     }
 
     private void init() {
-        Shader shader = v -> new Col();
 
         Visibility visibility = new Visibility(width,height);
         Triangle rTriangle = new Triangle(visibility);
+        rTriangle.setShader((vertex) -> new Col(0xFFFFFF));
+        rTriangle.setShader((vertex) -> vertex.getColor().mul(1/vertex.getOne()));
 
         initUI();
     }
