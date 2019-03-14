@@ -3,16 +3,26 @@ package render;
 import model.Part;
 import model.Solid;
 import model.Vertex;
+import raster.Visibility;
 import transforms.Mat4;
 import util.Lerp;
 
 public class Renderer {
 
+
+
     private Mat4 viewMatrix, modelMatrix, projeMatrix;
     private Triangle rTriangle;
+    private Point rPoint;
+    private Line rLine;
     private Line line;
     private Point point;
     private Lerp<Vertex> lerp = new Lerp();
+
+    public Renderer(Visibility visibility) {
+        this.rTriangle = new Triangle(visibility);
+
+    }
 
 
     public void render(Solid solid) {
@@ -59,6 +69,10 @@ public class Renderer {
 
     private void renderPoint(Vertex a) {
 
+
+
+
+        rPoint.rasterize(a);
     }
 
 
@@ -111,6 +125,31 @@ public class Renderer {
         if (c.getPosition().getZ() >= 0) {
             rTriangle.rasterize(a, b, c);
         }
+
+    }
+
+    public Mat4 getViewMatrix() {
+        return viewMatrix;
+    }
+
+    public void setViewMatrix(Mat4 viewMatrix) {
+        this.viewMatrix = viewMatrix;
+    }
+
+    public Mat4 getModelMatrix() {
+        return modelMatrix;
+    }
+
+    public void setModelMatrix(Mat4 modelMatrix) {
+        this.modelMatrix = modelMatrix;
+    }
+
+    public Mat4 getProjeMatrix() {
+        return projeMatrix;
+    }
+
+    public void setProjeMatrix(Mat4 projeMatrix) {
+        this.projeMatrix = projeMatrix;
     }
 }
 

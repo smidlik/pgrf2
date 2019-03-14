@@ -6,6 +6,7 @@ import transforms.Col;
 import transforms.Point2D;
 import util.Lerp;
 
+import java.awt.*;
 import java.util.function.Function;
 
 
@@ -50,7 +51,8 @@ public class Triangle {
                 Vertex abc = lerp.lerp(ab,ac,t);
 
                 // Vykreslení bodu + shader, případně barva ....
-                vis.put(x, y, z, shader.apply(new Vertex()));
+                //vis.put(x, y, z, shader.apply(new Vertex()));
+                vis.put(x, y, z, new Col(Color.WHITE.getRGB()));
             }
         }
     }
