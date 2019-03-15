@@ -3,12 +3,10 @@ package render;
 import model.Vertex;
 import raster.Visibility;
 
-public class Point {
-    private Visibility visibility;
+public class Point extends Rasterizer{
 
 
-    public Point(Visibility visibility) {
-        this.visibility = visibility;
+    public Point() {
     }
 
     public void rasterize(Vertex v){
@@ -16,7 +14,7 @@ public class Point {
 
 
 
-        visibility.put();
+        draw();
     }
 
 }

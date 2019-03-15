@@ -21,6 +21,8 @@ public class Renderer {
 
     public Renderer(Visibility visibility) {
         this.rTriangle = new Triangle(visibility);
+        this.rPoint = new Point(visibility);
+        this.rLine = new Line(visibility);
 
     }
 

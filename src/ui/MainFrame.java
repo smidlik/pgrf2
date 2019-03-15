@@ -152,7 +152,7 @@ public class MainFrame extends JFrame {
             }
         }, 100, FPS);
     }
-
+/**Zde probíhá vykreslení */
     private void draw() {
         renderer.setViewMatrix(camera.getViewMatrix());
         repaint();

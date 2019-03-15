@@ -7,13 +7,21 @@ import util.Vectorizable;
 
 public class Vertex implements Vectorizable<Vertex> {
 
-    private Point3D pos;
+    private final double x, y, z;
     private Col color;
     private Vec2D texCord;
     private double one;
 
     public Vertex(Point3D pos) {
-        this.pos = pos;
+        this.x = pos.getX();
+        this.y = pos.getY();
+        this.z = pos.getZ();
+    }
+
+    public Vertex(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public Col getColor() {
@@ -32,12 +40,12 @@ public class Vertex implements Vectorizable<Vertex> {
     }
 
     public Point3D getPosition(){
-        return null;
+        return new Point3D(x,y,z);
     }
 
     @Override
-    public Vertex mul(double t) {
-        return null;
+    public Vertex mul(double d) {
+        return new Vertex(x * d, y * d, z * d);
     }
 
     @Override
